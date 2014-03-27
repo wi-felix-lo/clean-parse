@@ -111,6 +111,7 @@ module.exports = function(grunt) {
             }
         },
         clean: [
+            'node_modules'
             'public/lib/angular/angular.js',
             'public/lib/angular-cookies/angular-cookies.js',
             'public/lib/angular-resource/angular-resource.js',
