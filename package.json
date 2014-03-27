@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "./package-post-install.sh"
+    "postinstall": "./npm-post-install.sh"
   },
   "dependencies": {
     "parse": "latest",
