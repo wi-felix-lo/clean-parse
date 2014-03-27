@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "felix-blog"
+        }, 
+        "felix-blog": {
+            "applicationId": "ddRg099YkFSdbBTmdeidrpMZNRGhBe6ITmY52Ibj", 
+            "masterKey": "foFW3N0x0c1rU3aDihQrOff3M6SCSiRDVKrtyJM4"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.17"
+    }
+}
