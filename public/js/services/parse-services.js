@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('ParseServices', []).factory('ParseSDK', function() {
 
     // initialize parse
@@ -10,7 +12,7 @@ angular.module('ParseServices', []).factory('ParseSDK', function() {
 
         // default function call to find
         var functionToCall = 'find';
-        if (options != undefined && options.functionToCall != undefined) functionToCall = options.functionToCall;
+        if (options !== undefined && options.functionToCall !== undefined) functionToCall = options.functionToCall;
 
         console.log(functionToCall, query);
 
@@ -45,8 +47,8 @@ angular.module('ParseServices', []).factory('ParseSDK', function() {
     return function(parseData, fields) {
 
         // verify parameters
-        if (parseData == undefined) throw new Error('Missing parseData');
-        if (fields == undefined) throw new Error('Missing fields.');
+        if (parseData === undefined) throw new Error('Missing parseData');
+        if (fields === undefined) throw new Error('Missing fields.');
 
         // internal parse object reference
         var parseObject = parseData;
@@ -67,28 +69,29 @@ angular.module('ParseServices', []).factory('ParseSDK', function() {
 
         // add dynamic properties from fields array
         var self = this;
+        var addClosure = function(i) {
+
+            var propName = fields[i];
+            Object.defineProperty(self, propName, {
+                get: function() {
+
+                    return parseObject.get(propName);
+                },
+                set: function(value) {
+
+                    parseObject.set(propName, value);
+                }
+            });
+        };
+
         for (var i = 0; i < fields.length; i++) {
-            // add closure
-            (function() {
-
-                var propName = fields[i];
-                Object.defineProperty(self, propName, {
-                    get: function() {
-
-                        return parseObject.get(propName);
-                    },
-                    set: function(value) {
-
-                        parseObject.set(propName, value);
-                    }
-                });
-            })();
+            addClosure(i);
         }
 
         // instance methods
         this.save = function() {
 
-            return ParseQuery(parseObject, {
+            return new ParseQuery(parseObject, {
                 functionToCall: 'save',
                 params: [ null ]
             });
@@ -96,14 +99,14 @@ angular.module('ParseServices', []).factory('ParseSDK', function() {
 
         this.destroy = function() {
 
-            return ParseQuery(parseObject, {
+            return new ParseQuery(parseObject, {
                 functionToCall: 'destroy'
             });
         };
 
         this.fetch = function() {
 
-            return ParseQuery(parseObject, {
+            return new ParseQuery(parseObject, {
                 functionToCall: 'fetch'
             });
         };

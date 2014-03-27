@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('mean.system').controller('IndexController',
-        [ '$scope', 'Global', 'ParseCloudRun', 'ParseObject', function($scope, Global, ParseCloudRun, ParseObject) {
+angular.module('mean.system').controller('IndexController', [ '$scope', 'Global', function($scope, Global) {
 
-            $scope.global = Global;
-        } ]);
+    $scope.global = Global;
+} ]);

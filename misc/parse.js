@@ -1,3 +1,5 @@
+'use strict';
+
 function init(Parse) {
     
     Parse.initialize('ddRg099YkFSdbBTmdeidrpMZNRGhBe6ITmY52Ibj', '5Cli35VXzvqEQ6xZCN8d4UZQvzrz7OuqPQuMvkue');

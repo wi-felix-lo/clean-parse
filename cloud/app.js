@@ -1,20 +1,10 @@
 var express = require('express');
-var _ = require('underscore');
 
 // Controller code in separate files.
 var index = require('cloud/controllers/index.js');
 
 // Required for initializing Express app in Cloud Code.
 var app = express();
-
-// We will use HTTP basic auth to protect some routes (e.g. adding a new blog
-// post)
-var basicAuth = express.basicAuth('felix', '123456');
-
-// The information showed about the poster
-var userEmail = 'felix.lo@wellintech.com.hk';
-var userDisplayName = 'Felix Lo';
-var userDescription = 'System Analyst';
 
 // Instead of using basicAuth, you can also implement your own cookie-based
 // user session management using the express.cookieSession middleware

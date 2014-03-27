@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
     // Project Configuration
@@ -11,7 +13,8 @@ module.exports = function(grunt) {
                 },
             },
             js: {
-                files: [ 'gruntfile.js', 'server.js', 'public/build/**', 'cloud/**/*.js', 'misc/**/*.js' ],
+                files: [ 'gruntfile.js', 'server.js', 'cloud/**', 'public/js/**', 'misc/**', 'test/**' ],
+                tasks: [ 'jshint', 'uglify' ],
                 options: {
                     livereload: true,
                 },
@@ -24,8 +27,17 @@ module.exports = function(grunt) {
             },
             css: {
                 files: [ 'public/css/**' ],
+                tasks: [ 'cssmin' ],
                 options: {
                     livereload: true
+                }
+            }
+        },
+        jshint: {
+            all: {
+                src: ['gruntfile.js', 'server.js', 'cloud/**/*.js', 'public/js/**/*.js', 'misc/**/*.js', 'test/**/*.js'],
+                options: {
+                    jshintrc: true
                 }
             }
         },
@@ -113,6 +125,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-nodemon');
@@ -120,13 +133,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-env');
     grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('build', [ 'cssmin', 'uglify' ]);
+    grunt.registerTask('build', [ 'jshint', 'cssmin', 'uglify' ]);
 
     // Default task(s).
-    grunt.registerTask('default', [ 'cssmin', 'uglify', 'concurrent' ]);
+    grunt.registerTask('default', [ 'jshint', 'concurrent' ]);
 
     // Test task.
-    grunt.registerTask('test', [ 'env:test', 'mochaTest' ]);
+    grunt.registerTask('test', [ 'jshint', 'env:test', 'mochaTest' ]);
 
     // Coverage task
     grunt.registerTask('cov', [ 'env:test', 'shell:coverage' ]);

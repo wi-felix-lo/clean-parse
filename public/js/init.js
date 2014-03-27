@@ -9,7 +9,7 @@ angular.element(document).ready(function() {
     angular.bootstrap(document, [ 'mean' ]);
 });
 
-angular.module('mean').run([ 'ParseSDK', function(ParseServices) {
+angular.module('mean').run([ 'ParseSDK', function() {
 
     // parse instantiated throught service injection
 } ]);
