@@ -47,7 +47,7 @@ module.exports = function(grunt) {
         cssmin: {
             combine: {
                 files: {
-                    "public/build/css/dist.min.css": [ "public/lib/bootstrap/dist/css/bootstrap.css", "public/css/**/*.css" ]
+                    'public/build/css/dist.min.css': [ 'public/lib/bootstrap/dist/css/bootstrap.css', 'public/css/**/*.css' ]
                 }
             }
         },
@@ -97,13 +97,23 @@ module.exports = function(grunt) {
                     stdout: true
                 }
             }
-        }
+        },
+        clean: [
+            'public/lib/angular/angular.js',
+            'public/lib/angular-cookies/angular-cookies.js',
+            'public/lib/angular-resource/angular-resource.js',
+            'public/lib/angular-ui-router/release/angular-ui-router.js',
+            'public/lib/angular-bootstrap/ui-bootstrap.js',
+            'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+            'public/lib/bootstrap/dist/css/bootstrap.css',
+            'public/lib/jquery/src' ]
     });
 
     // Load NPM tasks
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');

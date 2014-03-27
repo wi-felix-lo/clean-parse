@@ -24,6 +24,7 @@
     "istanbul": "latest",
     "grunt-shell": "latest",
     "mocha": "latest",
-    "should": "latest"
+    "should": "latest",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }
