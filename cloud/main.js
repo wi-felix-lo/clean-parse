@@ -1,5 +1,3 @@
-'use strict';
-
 var Parse = require('cloud/lib/parse');
 
 Parse.Cloud.define('test', function(req, res) {
